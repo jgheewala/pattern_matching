@@ -25,7 +25,7 @@ type StringInfo struct {
 	Count    int
 }
 
-func IsMatch(s, p string) bool {
+func IsRegularExpressionMatch(s, p string) bool {
 	sl := len(s) + 1
 	pl := len(p) + 1
 	rv := make([][]bool, sl)

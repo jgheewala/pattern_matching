@@ -35,51 +35,51 @@ func TestWordPatternII291LeetCode(t *testing.T) {
 	}
 }
 
-func TestIsMatch(t *testing.T) {
-	if IsMatch("aa", "a") == true {
-		t.Error("IsMatching aa & a failed")
+func TestIsRegularExpressionMatch(t *testing.T) {
+	if IsRegularExpressionMatch("aa", "a") == true {
+		t.Error("IsRegularExpressionMatching aa & a failed")
 		return
 	}
 	//fmt.Println("aa & a done")
 
-	if IsMatch("aa", "aa") == false {
-		t.Error("IsMatching aa & aa failed")
+	if IsRegularExpressionMatch("aa", "aa") == false {
+		t.Error("IsRegularExpressionMatching aa & aa failed")
 		return
 	}
 	//fmt.Println("aa & aa done")
 
-	if IsMatch("aaa", "aa") == true {
-		t.Error("IsMatching aaa & aa failed")
+	if IsRegularExpressionMatch("aaa", "aa") == true {
+		t.Error("IsRegularExpressionMatching aaa & aa failed")
 		return
 	}
 	//fmt.Println("aaa & aa done")
 
-	if IsMatch("aa", "a*") == false {
-		t.Error("IsMatching aa & a* failed")
+	if IsRegularExpressionMatch("aa", "a*") == false {
+		t.Error("IsRegularExpressionMatching aa & a* failed")
 		return
 	}
 	//fmt.Println("aa & a* done")
 
-	if IsMatch("aa", ".*") == false {
-		t.Error("IsMatching aa & .* failed")
+	if IsRegularExpressionMatch("aa", ".*") == false {
+		t.Error("IsRegularExpressionMatching aa & .* failed")
 		return
 	}
 	//fmt.Println("aa & .* done")
 
-	if IsMatch("ab", ".*") == false {
-		t.Error("IsMatching ab & .* failed")
+	if IsRegularExpressionMatch("ab", ".*") == false {
+		t.Error("IsRegularExpressionMatching ab & .* failed")
 		return
 	}
 	//fmt.Println("ab & .* done")
 
-	if IsMatch("aab", "c*a*b") == false {
-		t.Error("IsMatching aab & c*a*b failed")
+	if IsRegularExpressionMatch("aab", "c*a*b") == false {
+		t.Error("IsRegularExpressionMatching aab & c*a*b failed")
 		return
 	}
 	//fmt.Println("aab & c*a*b* done")
 
-	if IsMatch("aaa", "a.a") == false {
-		t.Error("IsMatching aaa & a.a failed")
+	if IsRegularExpressionMatch("aaa", "a.a") == false {
+		t.Error("IsRegularExpressionMatching aaa & a.a failed")
 		return
 	}
 	//fmt.Println("aaa & a.a done")
