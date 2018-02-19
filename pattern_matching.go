@@ -19,12 +19,6 @@ var empty struct{}
 * isMatch("ab", ".*") → true
 * isMatch("aab", "c*a*b") → true
  */
-
-type StringInfo struct {
-	DontCare bool
-	Count    int
-}
-
 func IsRegularExpressionMatch(s, p string) bool {
 	sl := len(s) + 1
 	pl := len(p) + 1
@@ -61,6 +55,71 @@ func IsRegularExpressionMatch(s, p string) bool {
 	}
 
 	return rv[sl-1][pl-1]
+}
+
+/*
+* '?' Matches any single character.
+* '*' Matches any sequence of characters (including the empty sequence).
+*
+* The matching should cover the entire input string (not partial).
+*
+* The function prototype should be:
+* bool isMatch(const char *s, const char *p)
+*
+* Some examples:
+* isMatch("aa","a") → false
+* isMatch("aa","aa") → true
+* isMatch("aaa","aa") → false
+* isMatch("aa", "*") → true
+* isMatch("aa", "a*") → true
+* isMatch("ab", "?*") → true
+* isMatch("aab", "c*a*b") → false
+*
+ */
+func IsWildCardMatching(s, p string) bool {
+	str := []byte(s)
+	pattern := []byte(p)
+
+	// replace multiple *'s with single *
+	// for e.g: a****b*****c ----> a*b*c
+	writeIndex := 0
+	isFirst := true
+	for idx := 0; idx < len(pattern); idx++ {
+		if string(pattern[idx]) == "*" {
+			if isFirst {
+				pattern[writeIndex] = pattern[idx]
+				writeIndex++
+				isFirst = false
+			}
+		} else {
+			pattern[writeIndex] = pattern[idx]
+			writeIndex++
+			isFirst = true
+		}
+	}
+	sl := len(str) + 1
+	pl := writeIndex + 1
+	rv := make([][]bool, sl)
+	for idx := 0; idx < sl; idx++ {
+		rv[idx] = make([]bool, pl)
+	}
+
+	if writeIndex > 0 && string(pattern[0]) == "*" {
+		rv[0][1] = true
+	}
+
+	rv[0][0] = true
+
+	for i := 1; i < sl; i++ {
+		for j := 1; j < len(rv[0]); j++ {
+			if string(pattern[j-1]) == "?" || str[i-1] == pattern[j-1] {
+				rv[i][j] = rv[i-1][j-1]
+			} else if string(pattern[j-1]) == "*" {
+				rv[i][j] = rv[i-1][j] || rv[i][j-1]
+			}
+		}
+	}
+	return rv[len(str)][writeIndex]
 }
 
 /*

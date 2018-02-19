@@ -35,6 +35,41 @@ func TestWordPatternII291LeetCode(t *testing.T) {
 	}
 }
 
+func TestIsWildCardMatching(t *testing.T) {
+	if IsWildCardMatching("aa", "a") != false {
+		t.Error("wildcard matching failed for 'aa' & a")
+		return
+	}
+	if IsWildCardMatching("aa", "aa") != true {
+		t.Error("wildcard matching failed for 'aa' & 'aa'")
+		return
+	}
+	if IsWildCardMatching("aaa", "aa") != false {
+		t.Error("wildcard matching failed for 'aaa' & 'aa'")
+		return
+	}
+	if IsWildCardMatching("aa", "*") != true {
+		t.Error("wildcard matching failed for 'aa' & '*'")
+		return
+	}
+	if IsWildCardMatching("aa", "a*") != true {
+		t.Error("wildcard matching failed for 'aa' & 'a*'")
+		return
+	}
+	if IsWildCardMatching("aa", "?a") != true {
+		t.Error("wildcard matching failed for 'aa' & '?a'")
+		return
+	}
+	if IsWildCardMatching("aab", "c*a*b") != false {
+		t.Error("wildcard matching failed for 'aab' & 'c*a*b'")
+		return
+	}
+	if IsWildCardMatching("abc", "a******b*********c") != true {
+		t.Error("wildcard matching failed for 'abc' & 'a******b*********c'")
+		return
+	}
+}
+
 func TestIsRegularExpressionMatch(t *testing.T) {
 	if IsRegularExpressionMatch("aa", "a") == true {
 		t.Error("IsRegularExpressionMatching aa & a failed")
